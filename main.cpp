@@ -1,21 +1,16 @@
 #include <iostream>
 using namespace std;
 
-
+//recebe, do usuário, a coordenada de linha no tipo char e retorna o seu respectivo índice, dentro da matriz
 int LinhaEscolha(char linhaLetra)
 {
-  int linhaNum;
-
   if(linhaLetra == 'A')
-    linhaNum = 0;
+    return 0;
   if(linhaLetra == 'B')
-    linhaNum = 1;
+    return 1;
   if(linhaLetra == 'C')
-    linhaNum = 2;
-
-  return linhaNum;
+    return 2;
 }
-
 
 int main() 
 {
@@ -23,6 +18,7 @@ int main()
   int coluna, linhaNum, colunaNum, numJogadas = 1;
   bool vitoriaJ1 = false, vitoriaJ2 = false, empate = false;
 
+  //seta todos as posições com um caracter vazio
   for(int l = 0; l < 5; l++)
   {
     for(int c = 0; c < 3; c++)
@@ -31,6 +27,7 @@ int main()
     }
   }
 
+  //arma a "tabela" do jogo
   cout << endl << "\t" << 1 << "\t" << 2 << "\t" << 3 << endl << endl;
   for(int l = 0; l < 5; l++)
   {
@@ -58,6 +55,7 @@ int main()
     cout << endl;
   }
 
+  //interação com os usuários
   while(!vitoriaJ1 && !vitoriaJ2 && !empate)
   {
     if(numJogadas % 2 != 0)
@@ -75,6 +73,7 @@ int main()
     else
       escolha[linhaNum][colunaNum] = 'O';
 
+    //monta a tabela novamente
     cout << endl << "\t" << 1 << "\t" << 2 << "\t" << 3 << endl << endl;
     for(int l = 0; l < 5; l++)
     {
@@ -106,6 +105,7 @@ int main()
       cout << endl;
     }
 
+    //verifica se houve um vencedor
     if(escolha[0][0] == 'X' && escolha[0][1] == 'X' && escolha[0][2] == 'X')
       vitoriaJ1 = true;
     if(escolha[1][0] == 'X' && escolha[1][1] == 'X' && escolha[1][2] == 'X')
@@ -146,18 +146,13 @@ int main()
     numJogadas++;
   }
 
+  //mostra a mensagem correta de acordo com o resultado
   if(vitoriaJ1 == true)
-  {
     cout << "\nParabéns Jogador 'X', você foi o vencedor!!\n";
-  }
   if(vitoriaJ2 == true)
-  {
     cout << "\nParabéns Jogador 'O', você foi o vencedor!!\n";
-  }
   if(empate == true)
-  {
     cout << "\nInfelizmente ninguém foi o vencedor. O jogo Terminou em empate!!\n";
-  }
 
   return 0;
 }
